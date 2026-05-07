@@ -1,0 +1,39 @@
+{
+  "won_t_start": {
+    "likely_causes": [
+      "12V auxiliary battery weak or failed",
+      "Blown main fuse or poor battery terminal connection",
+      "Smart key / immobilizer issue",
+      "Hybrid control module fault after prolonged discharge"
+    ],
+    "safety_notes": [
+      "Ventilate when jump-starting; sparks near battery can ignite hydrogen",
+      "Do not reverse polarity on hybrid vehicles",
+      "If jump-start does not work, avoid repeated cranking — seek diagnosis"
+    ]
+  },
+  "dashboard_dim": {
+    "likely_causes": ["Low 12V battery state of charge", "Corroded terminals"],
+    "safety_notes": ["Clean terminals with proper tools; wear eye protection"]
+  },
+  "smart_key_not_working": {
+    "likely_causes": ["Weak 12V battery", "Failed key fob battery"],
+    "safety_notes": ["Keep a spare mechanical key accessible"]
+  },
+  "brake_noise": {
+    "likely_causes": ["Worn pads", "Glazed rotors", "Foreign debris"],
+    "safety_notes": ["Inspect brakes before long trips"]
+  },
+  "headlight_dim": {
+    "likely_causes": ["Bulb aging", "Ground issue", "Voltage drop"],
+    "safety_notes": ["Replace bulbs in pairs when practical"]
+  },
+  "wiper_streak": {
+    "likely_causes": ["Worn rubber", "Dirty windshield"],
+    "safety_notes": ["Clean windshield before replacing blades"]
+  },
+  "overheating": {
+    "likely_causes": ["Coolant low", "Thermostat stuck", "Cooling fan fault"],
+    "safety_notes": ["Never open radiator cap when engine is hot"]
+  }
+}

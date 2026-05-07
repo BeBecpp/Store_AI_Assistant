@@ -1,0 +1,353 @@
+/* Minimal, readable chat widget — light neutral palette */
+
+:root {
+  --asa-fg: #111827;
+  --asa-muted: #6b7280;
+  --asa-border: #e5e7eb;
+  --asa-bg: #ffffff;
+  --asa-soft: #f9fafb;
+  --asa-accent: #2563eb;
+  --asa-user: #dbeafe;
+  --asa-asst: #f3f4f6;
+  --asa-radius: 10px;
+  --asa-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+}
+
+.demo-page {
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  padding: 2rem;
+  max-width: 52rem;
+  color: var(--asa-fg);
+}
+
+#asa-chat-root {
+  position: fixed;
+  inset: auto 16px 16px auto;
+  z-index: 9999;
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  color: var(--asa-fg);
+}
+
+.asa-fab {
+  min-width: 52px;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--asa-border);
+  background: var(--asa-bg);
+  color: var(--asa-fg);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--asa-shadow);
+}
+
+.asa-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+.asa-shell[hidden] {
+  display: none !important;
+}
+
+.asa-panel {
+  position: fixed;
+  right: 16px;
+  bottom: 72px;
+  left: auto;
+  top: auto;
+  width: min(100vw - 24px, 380px);
+  height: min(72vh, 520px);
+  background: var(--asa-bg);
+  border: 1px solid var(--asa-border);
+  border-radius: var(--asa-radius);
+  box-shadow: var(--asa-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.asa-panel.asa-maximized {
+  position: fixed !important;
+  left: 2vw !important;
+  top: 4vh !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 96vw !important;
+  height: 88vh !important;
+  max-height: none !important;
+}
+
+.asa-panel.asa-minimized {
+  height: auto !important;
+}
+
+.asa-panel.asa-minimized .asa-body,
+.asa-panel.asa-minimized .asa-toolbar,
+.asa-panel.asa-minimized .asa-resize {
+  display: none;
+}
+
+.asa-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--asa-soft);
+  border-bottom: 1px solid var(--asa-border);
+  cursor: grab;
+  user-select: none;
+}
+
+.asa-titlebar:active {
+  cursor: grabbing;
+}
+
+.asa-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.asa-win-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.asa-icon-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--asa-border);
+  background: var(--asa-bg);
+  color: var(--asa-muted);
+  cursor: pointer;
+  line-height: 1;
+  font-size: 1rem;
+}
+
+.asa-icon-btn:hover {
+  color: var(--asa-fg);
+}
+
+.asa-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--asa-border);
+  font-size: 0.75rem;
+  color: var(--asa-muted);
+}
+
+.asa-toolbar-label {
+  margin-right: auto;
+}
+
+.asa-tiny {
+  border: 1px solid var(--asa-border);
+  background: var(--asa-bg);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.asa-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.asa-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  line-height: 1.5;
+}
+
+.asa-bubble {
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.92rem;
+}
+
+.asa-user {
+  align-self: flex-end;
+  background: var(--asa-user);
+  max-width: 92%;
+}
+
+.asa-assistant {
+  align-self: flex-start;
+  background: var(--asa-asst);
+  max-width: 96%;
+}
+
+.asa-typing {
+  font-style: italic;
+  color: var(--asa-muted);
+}
+
+.asa-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 12px 8px;
+}
+
+.asa-chip {
+  border: 1px dashed var(--asa-border);
+  background: var(--asa-bg);
+  color: var(--asa-fg);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.asa-form {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--asa-border);
+  background: var(--asa-soft);
+}
+
+.asa-form textarea {
+  flex: 1;
+  resize: none;
+  border-radius: 8px;
+  border: 1px solid var(--asa-border);
+  padding: 8px 10px;
+  background: var(--asa-bg);
+  color: var(--asa-fg);
+  font: inherit;
+}
+
+.asa-send {
+  border: none;
+  border-radius: 8px;
+  padding: 0 14px;
+  background: var(--asa-accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.asa-cards {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.asa-card {
+  border: 1px solid var(--asa-border);
+  border-radius: 10px;
+  padding: 10px;
+  background: var(--asa-bg);
+}
+
+.asa-card h4 {
+  margin: 0 0 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.asa-price {
+  font-weight: 700;
+  color: var(--asa-fg);
+  margin: 0 0 4px;
+}
+
+.asa-stockline {
+  margin: 4px 0;
+  font-size: 0.8rem;
+  color: var(--asa-muted);
+}
+
+.asa-meta {
+  margin: 4px 0;
+  font-size: 0.78rem;
+  color: var(--asa-muted);
+}
+
+.asa-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+}
+
+.asa-badge.ok {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.asa-badge.low {
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.asa-badge.oos {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.asa-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--asa-accent);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+.asa-link:hover {
+  text-decoration: underline;
+}
+
+.asa-resize {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  right: 2px;
+  bottom: 2px;
+  cursor: nwse-resize;
+  background: linear-gradient(
+    135deg,
+    transparent 50%,
+    #cbd5e1 50%,
+    #cbd5e1 55%,
+    transparent 55%
+  );
+  opacity: 0.7;
+}
+
+@media (max-width: 480px) {
+  .asa-shell {
+    right: 0;
+    bottom: 56px;
+    left: 0;
+    width: 100%;
+  }
+
+  .asa-panel:not(.asa-maximized) {
+    width: calc(100vw - 20px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+}

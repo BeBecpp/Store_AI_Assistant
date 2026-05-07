@@ -1,0 +1,12 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      STORE_PROVIDER: mock
+      FRONTEND_STATIC_PATH: /frontend
+    volumes:
+      - ./frontend:/frontend:ro
